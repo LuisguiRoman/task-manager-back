@@ -4,7 +4,7 @@
   "description": "Prueba desarrollador fullstack evolution - backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon --exec babel-node api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Luis Román",
@@ -16,7 +16,22 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
     "express": "^4.17.1"
+  },
+  "eslintConfig": {
+    "rules": {
+      "semi": [
+        "error",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "always"
+      ]
+    }
   }
 }

@@ -1,6 +1,9 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 export const config = {
     api: {
-        port: process.env.API_PORT || 3002,
-        root: process.env.API_ROOT || '/api',
+        port: process.env.PORT || 3002,
+        root: process.env.ROOT || '/api',
     }
 }

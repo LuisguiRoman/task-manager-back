@@ -1,9 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from'cors';
-import { config } from '../config';
 import { routes } from '../network/routes';
-require('dotenv').config();
+import { config } from '../config';
 
 const app = express();
 

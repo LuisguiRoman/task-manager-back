@@ -1,4 +1,4 @@
-import { router as user } from '../api/components/user/network';
+import { router as user } from '../components/user/network';
 import { config } from '../config';
 
 export const routes = (server)=>{

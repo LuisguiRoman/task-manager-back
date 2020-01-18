@@ -8,5 +8,8 @@ export const config = {
     },
     db: {
         dbUrl: process.env.DB_URL || ''
+    },
+    auth: {
+        secret: process.env.SECRET_KEY || '_xxxxx'
     }
 }

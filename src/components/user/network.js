@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { response } from '../../../network/response';
+import { response } from '../../network/response';
 import { addUser } from './controller';
 
 export const router = Router();

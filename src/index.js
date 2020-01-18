@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from'cors';
-import { routes } from '../network/routes';
-import { config } from '../config';
-import { dbConnect } from '../db';
+import { routes } from './network/routes';
+import { config } from './config';
+import { dbConnect } from './db';
 
 const app = express();
 

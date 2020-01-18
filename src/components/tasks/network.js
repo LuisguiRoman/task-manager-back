@@ -6,12 +6,12 @@ import { tokenVerification } from '../../middlewares';
 export const router = Router();
 
 //Routes
-router.post('/', create);
-router.post('/login', login);
-router.post('/session', tokenVerification, session);
+router.post('/', tokenVerification, list);
+router.post('/create', tokenVerification, create);
+router.post('/update', tokenVerification, update);
 
 //Crear un usuario
-function create(req, res){
+function list(req, res){
     addUser(req.body)
         .then((user)=>{
             response.success(req, res, user, 201);
@@ -22,7 +22,7 @@ function create(req, res){
 }
 
 //Loguear un usuario
-function login(req, res) {
+function create(req, res) {
     authenticate(req.body)
         .then((token)=>{
             response.success(req, res, { token }, 200);
@@ -33,7 +33,7 @@ function login(req, res) {
 }
 
 //Crear una sesion de usuario
-function session(req, res) {
+function update(req, res) {
     getUser(req.decoded.user_id)
         .then((user)=>{
             console.log(user);

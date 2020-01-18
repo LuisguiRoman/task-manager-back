@@ -3,12 +3,15 @@ import bodyParser from 'body-parser';
 import cors from'cors';
 import { routes } from '../network/routes';
 import { config } from '../config';
+import { dbConnect } from '../db';
 
 const app = express();
 
+dbConnect(config.db.dbUrl);
+
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //endpoints
 routes(app);

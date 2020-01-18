@@ -1,9 +1,10 @@
-import db from 'mongoose';
-db.Promise = global.Promise;
+import mongoose from 'mongoose';
+mongoose.Promise = global.Promise;
 
-export const connect = async (url) =>{
-    await db.connect(url, {
+export const dbConnect = async (url) =>{
+    await mongoose.connect(url, {
         useNewUrlParser: true,
+        useCreateIndex: true,
         useUnifiedTopology: true
     });
 }

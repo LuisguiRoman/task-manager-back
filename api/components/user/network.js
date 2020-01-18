@@ -1,27 +1,16 @@
 import { Router } from 'express';
 import { response } from '../../../network/response';
-import { controller } from './index';
+import { addUser } from './controller';
 
 export const router = Router();
 
 //Routes
-router.get('/:id', get);
-router.post('/', upsert);
+router.post('/', create);
 
-function get(req, res){
-    controller.get(req.params.id)
+function create(req, res){
+    addUser(req.body)
         .then((user)=>{
-            response.success(req, res, user, 200);
-        })
-        .catch((err)=>{
-            response.error(req, res, err, 500);
-        });
-}
-
-function upsert(req, res){
-    controller.upsert(req.body)
-        .then((user)=>{
-            response.success(req, res, user, 200);
+            response.success(req, res, user, 201);
         })
         .catch((err)=>{
             response.error(req, res, err, 500);

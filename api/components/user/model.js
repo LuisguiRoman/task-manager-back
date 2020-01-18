@@ -7,4 +7,4 @@ const mySchema = new Schema({
     password: { type: String, required: true, select: false }
 });
 
-export const model = model('user', mySchema);
+export const Model = model('user', mySchema);

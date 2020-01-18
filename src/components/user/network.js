@@ -7,7 +7,7 @@ export const router = Router();
 //Routes
 router.post('/', create);
 
-function create(req, res){
+async function create(req, res){
     addUser(req.body)
         .then((user)=>{
             response.success(req, res, user, 201);

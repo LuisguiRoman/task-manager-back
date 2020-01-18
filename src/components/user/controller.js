@@ -1,10 +1,9 @@
 import { add } from './store';
 
 export function addUser ({name, username, password}){
-    if(!name){
-        return Promise.reject('Invalid name');
+    if(!name || !username || !password){
+        return Promise.reject('Información inválida');
     }
     const user = { name, username, password };
-    console.log(add)
     return add(user);
 }

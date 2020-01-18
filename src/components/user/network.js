@@ -25,6 +25,6 @@ function auth(req, res) {
         })
         .catch((err)=>{
             console.log('Err login: ', err);
-            response.error(req, res, 'Username or password is incorrect', 400);
+            response.error(req, res, 'Usuario o contraseña incorrectas', 400);
         });
 }

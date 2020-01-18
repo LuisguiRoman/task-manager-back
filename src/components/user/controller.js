@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { config } from '../../config';
-import { add, auth } from './store';
+import { add, auth, get } from './store';
 
+//Agregar un usuario a la base de datos
 export function addUser ({name, username, password}){
     if(!name || !username || !password){
         throw new Error('Información inválida');
@@ -13,6 +14,7 @@ export function addUser ({name, username, password}){
     return add(user);
 }
 
+//Verificar el usuario y la contrasela en la base de datos
 export async function authenticate({ username, password }) {
     if(!username || !password){
         throw new Error('Información inválida');
@@ -28,4 +30,9 @@ export async function authenticate({ username, password }) {
         const token = jwt.sign({ user_id: user._id }, config.auth.secret, { expiresIn: '24h' });
         return token;
     }
+}
+
+//Traer datos de un usuario
+export function getUser(id){
+    return get(id);
 }

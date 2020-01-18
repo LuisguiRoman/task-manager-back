@@ -5,7 +5,7 @@ export const response = {
         res.status(statusCode).send({
             error: false,
             status: status,
-            body: statusMessage
+            data: statusMessage
         });
     },
     error: (req, res, message, status)=>{
@@ -14,7 +14,7 @@ export const response = {
         res.status(statusCode).send({
             error: true,
             status: status,
-            body: statusMessage
+            data: statusMessage
         });
     }
 };

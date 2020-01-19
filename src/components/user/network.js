@@ -6,7 +6,7 @@ import { tokenVerification } from '../../middlewares';
 export const router = Router();
 
 //Routes
-router.post('/', create);
+router.post('/create', create);
 router.post('/login', login);
 router.post('/session', tokenVerification, session);
 

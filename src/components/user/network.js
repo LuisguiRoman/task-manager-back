@@ -36,7 +36,6 @@ function login(req, res) {
 function session(req, res) {
     getUser(req.decoded.user_id)
         .then((user)=>{
-            console.log(user);
             response.success(req, res, {user: {name: user.name}}, 200);
         })
         .catch((err)=>{

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { response } from '../../network/response';
-import { addUser, authenticate, getUser } from './controller';
+import { getTasks, createTask, updateTask } from './controller';
 import { tokenVerification } from '../../middlewares';
 
 export const router = Router();
@@ -12,9 +12,9 @@ router.post('/update', tokenVerification, update);
 
 //Crear un usuario
 function list(req, res){
-    addUser(req.body)
-        .then((user)=>{
-            response.success(req, res, user, 201);
+    getTasks(req.decoded.user_id)
+        .then((tasks)=>{
+            response.success(req, res, {tasks}, 201);
         })
         .catch((err)=>{
             response.error(req, res, err, 500);
@@ -23,23 +23,23 @@ function list(req, res){
 
 //Loguear un usuario
 function create(req, res) {
-    authenticate(req.body)
-        .then((token)=>{
-            response.success(req, res, { token }, 200);
+    createTask(req.body, req.decoded.user_id)
+        .then((task)=>{
+            response.success(req, res, task, 201);
         })
         .catch((err)=>{
-            response.error(req, res, 'Usuario o contraseña incorrectas', 400);
+            //console.log(err)
+            response.error(req, res, 'Server error', 500);
         });
 }
 
 //Crear una sesion de usuario
 function update(req, res) {
-    getUser(req.decoded.user_id)
+    updateTask(req.decoded.user_id)
         .then((user)=>{
-            console.log(user);
             response.success(req, res, {user: {name: user.name}}, 200);
         })
         .catch((err)=>{
-            response.error(req, res, 'Internal server error', 500);
+            response.error(req, res, err, 500);
         });
 }

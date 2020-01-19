@@ -6,7 +6,7 @@ const userSchema = new Schema({
     hash: { type: String, required: true },
     password: { type: String, required: true, select: false },
     username: { type: String, required: true, index: { unique: true }},
-    createdDate: { type: Date, default: Date.now }
+    created_date: { type: Date, default: Date.now }
 });
 
 //eliminar el password de las respuestas

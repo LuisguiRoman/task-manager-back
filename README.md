@@ -1,4 +1,5 @@
-## Ejemplo de variables de entorno
+## Se debe crear un archivo ".env" en la raiz del proyecto con los siguientes datos:
+**Ejemplo de variables de entorno**
 
 PORT=3002
 

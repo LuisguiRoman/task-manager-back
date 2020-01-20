@@ -1,9 +1,10 @@
 import { add, get, update, remove } from './store';
+import { error } from '../../utils/error';
 
 //Agregar una tarea con el id del usuario
 export function createTask({task_name, expiration_date, priority}, token_id){
     if(!task_name || !expiration_date || !priority){
-        throw new Error('Debes completar la información');
+        throw error('Debes completar la información', 403);
     }
     const task = { task_name, user_id: token_id, expiration_date, priority };
     return add(task);
@@ -17,10 +18,10 @@ export function getTasks(user_id){
 //Agregar una tarea con el id del usuario
 export function updateTask({task_id, priority, user_id}, user_id_token){
     if(!task_id || !priority || !user_id){
-        throw new Error('Debes completar la información');
+        throw error('Debes completar la información', 403);
     }
     if(user_id !== user_id_token){
-        throw new Error('No puedes editar esta tarea');
+        throw error('No puedes editar esta tarea', 401);
     }
     return update(task_id, priority);
 }
@@ -28,10 +29,10 @@ export function updateTask({task_id, priority, user_id}, user_id_token){
 //eliminar tarea
 export function deleteTask({task_id, user_id}, user_id_token){
     if(!task_id || !user_id){
-        throw new Error('Debes completar la información');
+        throw error('Debes completar la información', 403);
     }
     if(user_id !== user_id_token){
-        throw new Error('No puedes editar esta tarea');
+        throw error('No puedes editar esta tarea', 401);
     }
     return remove(task_id);
 }

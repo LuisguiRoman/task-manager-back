@@ -21,3 +21,20 @@ export function get(user_id){
             });
     });
 }
+
+export async function update(task_id, priority){
+    //buscar en la db el mensaje por el id
+    const findTask = await Model.findOne({
+        _id: task_id
+    });
+
+    findTask.priority = priority;
+    const newTaskInfo = await findTask.save();
+    return newTaskInfo;
+}
+
+export function remove(task_id){
+    return Model.deleteOne({
+        _id: task_id
+    });
+}

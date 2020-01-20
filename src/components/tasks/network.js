@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { response } from '../../network/response';
-import { getTasks, createTask, updateTask } from './controller';
+import { getTasks, createTask, updateTask, deleteTask } from './controller';
 import { tokenVerification } from '../../middlewares';
 
 export const router = Router();
@@ -8,9 +8,10 @@ export const router = Router();
 //Routes
 router.post('/', tokenVerification, list);
 router.post('/create', tokenVerification, create);
-router.post('/update', tokenVerification, update);
+router.patch('/update', tokenVerification, update);
+router.delete('/remove', tokenVerification, remove);
 
-//Crear un usuario
+//Listar tareas por por usuario
 function list(req, res){
     getTasks(req.decoded.user_id)
         .then((tasks)=>{
@@ -21,7 +22,7 @@ function list(req, res){
         });
 }
 
-//Loguear un usuario
+//Crear una tarea
 function create(req, res) {
     createTask(req.body, req.decoded.user_id)
         .then((task)=>{
@@ -33,11 +34,22 @@ function create(req, res) {
         });
 }
 
-//Crear una sesion de usuario
+//Actualizar una tarea
 function update(req, res) {
-    updateTask(req.decoded.user_id)
-        .then((user)=>{
-            response.success(req, res, {user: {name: user.name}}, 200);
+    updateTask(req.body, req.decoded.user_id)
+        .then((task)=>{
+            response.success(req, res, { task }, 200);
+        })
+        .catch((err)=>{
+            response.error(req, res, err, 500);
+        });
+}
+
+//Eliminar tarea
+function remove(req, res) {
+    deleteTask(req.body, req.decoded.user_id)
+        .then((data)=>{
+            response.success(req, res, { data: "Tarea Eliminada" }, 200);
         })
         .catch((err)=>{
             response.error(req, res, err, 500);

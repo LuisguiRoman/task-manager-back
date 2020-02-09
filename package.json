@@ -1,7 +1,7 @@
 {
-  "name": "evolution-back",
+  "name": "task-manager-back",
   "version": "1.0.0",
-  "description": "Prueba desarrollador fullstack evolution - backend",
+  "description": "Backend administrador de tareas",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",

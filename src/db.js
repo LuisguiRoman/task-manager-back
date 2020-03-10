@@ -1,10 +1,20 @@
 import mongoose from 'mongoose';
+import { config } from './config';
+
 mongoose.Promise = global.Promise;
 
-export const dbConnect = async (url) =>{
-    await mongoose.connect(url, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true
-    });
+const { db: { user,pass,name,port,server } } = config;
+
+export const dbConnect = async () =>{
+    await mongoose.connect(
+        `${port}${user}:${pass}${server}${name}`,
+        {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useCreateIndex: true,
+          user,
+          pass,
+          dbName: name,
+        }
+    );
 }

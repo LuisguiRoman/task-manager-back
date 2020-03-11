@@ -4,18 +4,18 @@ import { config } from '../../config';
 import { add, auth, get } from './store';
 
 //Agregar un usuario a la base de datos
-export function addUser ({name, username, password}){
+export const addUser = ({name, username, password}) =>{
     if(!name || !username || !password){
         throw error('Información inválida', 403);
     }
     //Generar hash para la verificacion de contraseña
     const hash = bcrypt.hashSync(password, 10);
-    const user = { name, username, password, hash };
+    const user = { name, username, hash };
     return add(user);
 }
 
 //Verificar el usuario y la contrasela en la base de datos
-export async function authenticate({ username, password }) {
+export const authenticate = async ({ username, password }) =>{
     if(!username || !password){
         throw error('Información inválida', 403);
     }
@@ -33,6 +33,6 @@ export async function authenticate({ username, password }) {
 }
 
 //Traer datos de un usuario
-export function getUser(id){
+export const getUser = (id) =>{
     return get(id);
 }

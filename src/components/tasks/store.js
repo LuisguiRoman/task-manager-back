@@ -1,13 +1,13 @@
 import { Model } from './model';
 
 //Crear un nuevo usuario
-export function add(task){
+export const add = (task) =>{
     const newTask = new Model(task);
     return newTask.save();
 }
 
 //Traer las tareas filtradas por el id de usuario
-export function get(user_id){
+export const get = (user_id) =>{
     return new Promise((resolve, reject)=>{
         Model.find({user_id})
             .populate()
@@ -22,7 +22,7 @@ export function get(user_id){
     });
 }
 
-export async function update(task_id, priority){
+export const update = async (task_id, priority) =>{
     //buscar en la db el mensaje por el id
     const findTask = await Model.findOne({
         _id: task_id
@@ -33,7 +33,7 @@ export async function update(task_id, priority){
     return newTaskInfo;
 }
 
-export function remove(task_id){
+export const remove = (task_id) =>{
     return Model.deleteOne({
         _id: task_id
     });

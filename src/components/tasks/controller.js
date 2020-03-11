@@ -2,7 +2,7 @@ import { add, get, update, remove } from './store';
 import { error } from '../../utils/error';
 
 //Agregar una tarea con el id del usuario
-export function createTask({task_name, expiration_date, priority}, token_id){
+export const createTask = ({task_name, expiration_date, priority}, token_id) =>{
     if(!task_name || !expiration_date || !priority){
         throw error('Debes completar la información', 403);
     }
@@ -11,12 +11,12 @@ export function createTask({task_name, expiration_date, priority}, token_id){
 }
 
 //Listar tareas por usuario
-export function getTasks(user_id){
+export const getTasks = (user_id) =>{
     return get(user_id);
 }
 
 //Agregar una tarea con el id del usuario
-export function updateTask({task_id, priority, user_id}, user_id_token){
+export const updateTask = ({task_id, priority, user_id}, user_id_token) =>{
     if(!task_id || !priority || !user_id){
         throw error('Debes completar la información', 403);
     }
@@ -27,7 +27,7 @@ export function updateTask({task_id, priority, user_id}, user_id_token){
 }
 
 //eliminar tarea
-export function deleteTask({task_id, user_id}, user_id_token){
+export const deleteTask = ({task_id, user_id}, user_id_token) =>{
     if(!task_id || !user_id){
         throw error('Debes completar la información', 403);
     }
